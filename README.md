@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
   </head>
   <body>
-    <h1 style="color:red">redinventory</h1>
+    <h1>RED INVENTORY</h1>
     <p>"RED (Read some Equipments Details) Inventory" é um projeto de inventariador automatizado.</p>
   </body>
 </html>
