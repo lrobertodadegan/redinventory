@@ -12,64 +12,76 @@ use App\Http\Requests\HostUpdateRequest;
 use App\Repositories\HostRepository;
 use App\Validators\HostValidator;
 
-/**
- * Class HostsController.
- *
- * @package namespace App\Http\Controllers;
- */
 class HostsController extends Controller
 {
-    /**
-     * @var HostRepository
-     */
     protected $repository;
-
-    /**
-     * @var HostValidator
-     */
     protected $validator;
 
-    /**
-     * HostsController constructor.
-     *
-     * @param HostRepository $repository
-     * @param HostValidator $validator
-     */
     public function __construct(HostRepository $repository, HostValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $hosts = $this->repository->all();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $hosts,
-            ]);
-        }
-
-        return view('hosts.index', compact('hosts'));
+        return view('rede', ['hosts' => $hosts]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  HostCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
+	public function indicadores(){}
+	
+	public function scann($modo = 'basico'){
+		
+		if($modo == 'basico'){
+			$rede	= explode('.',env('REDE'));
+			$rede	= $rede[0].".".$rede[1].".".$rede[2].".";
+			$range	= explode('-',env('RANGE'));
+			$nhosts	= $range[1] - $range[0];
+			
+			for($i = 0;$i < $nhosts; $i++){
+				//rodar ping, nslookup ou host
+				$ip			= $range[0] + $i;
+				$ip			= $rede.$ip;
+				
+				//try{
+					//$ping	= shell_exec("ping $ip -n 2");//windows
+					//$ping		= explode("TTL=",$ping);
+				//}catch(\Exception $e){
+					$ping	= shell_exec("ping $ip -c 2");//linux
+					$ping		= explode("ttl=",$ping);
+				//}
+				
+				$ping		= $ping[1][0].$ping[1][1].$ping[1][2];
+				$hostname	= shell_exec("nslookup $ip"); //ou shell_exec("host $ip");
+				//tratar hostname
+				$mac		= shell_exec("arp|grep $ip");
+				//tratar mac
+				
+				if($ping['ttl'] > 64 && $ping['ttl'] <= 128){
+					$so = 'Windows';
+				}else{
+					$so = 'Linux';
+				}
+				
+				//salvar no banco
+				$dados = [
+					'hostname'	=> $hostname,
+					'ip'		=> $ip,
+					'mac'		=> $mac,
+					'so'		=> $so,
+				];
+				
+				$host = $this->repository->create($dados);
+			}			
+		}else{
+			//scann avançado
+		}
+		
+	}
+	
     public function store(HostCreateRequest $request)
     {
         try {
