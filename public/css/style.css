@@ -1,0 +1,22 @@
+body{
+	overflow-x:hidden;
+}
+h3{
+	margin-top:50px;
+}
+.configInicial{
+	margin-left:200px;
+}
+.configInicial button{
+	margin:20px 0 0 20px;
+}
+.configInicialLateral{
+	position:absolute;
+	top:450px;
+	left:50px;
+	width:100px;
+}
+.configInicialLateral h2{
+	transform:rotate(-90deg);
+}
+
