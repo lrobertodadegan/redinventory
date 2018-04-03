@@ -16750,3 +16750,9 @@ Stack trace:
 #5 /var/www/html/redinventory/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(189): Illuminate\Foundation\Http\Kernel->terminateMiddleware(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #6 /var/www/html/redinventory/public/index.php(58): Illuminate\Foundation\Http\Kernel->terminate(Object(Illuminate\Http\Request), Object(Illuminate\Http\Response))
 #7 {main}  
+[2018-04-03 16:17:43] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Trait 'Timestamps' not found in /var/www/html/redinventory/app/Entities/Host.php:17
+Stack trace:
+#0 {main}  
+[2018-04-03 16:17:55] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Trait 'Timestamps' not found in /var/www/html/redinventory/app/Entities/Usuario.php:17
+Stack trace:
+#0 {main}  
