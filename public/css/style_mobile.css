@@ -1,0 +1,10 @@
+body{
+	overflow-x:hidden;
+}
+.configInicialLateral{
+	position:fixed;
+	top:350px;
+	left:50px;
+	transform:rotate(-90deg);
+}
+

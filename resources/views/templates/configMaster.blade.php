@@ -7,8 +7,8 @@
   		<meta name="keywords" content="RED,inventario,inventory,brazil,brasil">
   		<meta name="author" content="Lucas Roberto">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>RED Inventory - Configuração Inicial</title>
-		<link rel="icon" href="{{asset('imagens/colapso777.ico')}}"> 
+        <title>RED - Configuração Inicial</title>
+		<link rel="icon" href="{{asset('imagens/red.ico')}}"> 
         <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('fontawesome/web-fonts-with-css/css/fontawesome-all.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -27,6 +27,8 @@
         <script src="{{ asset('bootstrap/dist/js/tooltip.min.js')}}"></script>
         <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <script src="{{ asset('bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-        @yield('js')
+        <script>
+            @yield('js')
+        </script>
     </body>
 </html>

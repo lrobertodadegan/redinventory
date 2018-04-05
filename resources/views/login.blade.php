@@ -8,7 +8,7 @@
   		<meta name="author" content="Lucas Roberto">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>RED Inventory - Login</title>
-		<link rel="icon" href="{{asset('imagens/colapso777.ico')}}"> 
+		<link rel="icon" href="{{asset('imagens/red.ico')}}"> 
         <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('fontawesome/web-fonts-with-css/css/fontawesome-all.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -18,13 +18,13 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col text-center">
-                    <img src="{{asset('imagens/logo.png')}}"/>
+                <div class="col text-center logo">
+                    <img src="{{asset('imagens/red.png')}}"/>
                     <form action="/login" method="post">
-                        <input type="text" class="form-control-sm" name="login" placeholder="Login"/>
-                        <input type="password" class="form-control-sm" name="senha" placeholder="Senha"/>
+                        <input type="text" class="form-control" name="login" placeholder="Login"/>
+                        <input type="password" class="form-control" name="senha" placeholder="Senha"/>
                         <small>Tecle ENTER para logar ou clique <a href="#" data-toggle="modal" data-target="#modalSenha">aqui</a> para receber sua senha por e-mail.</small>
-                        <button type="submit"></button>
+                        <button type="submit" style="display:none;"></button>
                     </form>
                 </div>
             </div>

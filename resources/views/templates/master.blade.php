@@ -8,7 +8,7 @@
   		<meta name="author" content="Lucas Roberto">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>RED Inventory</title>
-		<link rel="icon" href="{{asset('imagens/colapso777.ico')}}"> 
+		<link rel="icon" href="{{asset('imagens/red.ico')}}"> 
         <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('fontawesome/web-fonts-with-css/css/fontawesome-all.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">

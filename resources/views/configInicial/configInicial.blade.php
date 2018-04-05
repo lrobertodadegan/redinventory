@@ -2,13 +2,17 @@
 @section('css')
 @endsection
 @section('centro')
- <div class="row configInicial">
+<div class="row configInicial">
+    <div class="col">
         <h2>Antes de continuar...</h2>
+    </div>
+</div>
+<div class="row">
         <form action="/salvarConfig" method="post">
             <div class="col configInicialLateral">
                 <h2>CONFIGURAÇÃO</h2>
             </div>
-            <div class="col">
+            <div class="col configInicialForm">
                 <h3>Banco de Dados</h3>
                 <input type="text" class="form-control" name="servidordb" placeholder="IP do Servidor de Banco de Dados"/>
                 <small>O servidor deve estar ligado e disponível.</small>
@@ -20,8 +24,8 @@
                 <br>
                 <input type="text" class="form-control" name="usuariolin" placeholder="Usuário Administrativo para Linux"/>
                 <input type="text" class="form-control" name="senhalin" placeholder="Senha"/>
+                <button class="btn btn-secondary-outline">Continuar</button>
             </div>
-            <button class="btn btn-secondary-outline">Continuar</button>
         </form>
     </div>
 @endsection

@@ -1,22 +1,72 @@
 body{
 	overflow-x:hidden;
 }
-h3{
-	margin-top:50px;
+a{
+	color:rgb(80,80,80);
+	text-decoration:none;
 }
-.configInicial{
-	margin-left:200px;
+a:hover{
+	text-decoration:none;
 }
-.configInicial button{
-	margin:20px 0 0 20px;
+button{
+	transition:background .2s,color .2s;
+}
+button:hover{
+	background:rgb(10,10,10);
+	color:rgb(250,250,250);
 }
 .configInicialLateral{
-	position:absolute;
-	top:450px;
-	left:50px;
-	width:100px;
-}
-.configInicialLateral h2{
+	position:fixed;
+	top:50px;
+	left:0;
+	width:200px;
+	color:rgb(200,200,200);
 	transform:rotate(-90deg);
 }
-
+.configInicial{
+	margin-top:20px;
+}
+.configInicialForm{
+	margin:50px 0 0 170px;
+}
+.configInicialForm h3,
+.configInicialForm button{
+	margin-top:20px;
+	width:100%;
+}
+.configInicialForm input{
+	margin:5px 0;
+}
+.logo{
+	margin-top:100px;
+}
+.logo img{
+	height:200px;
+	margin-bottom:50px;
+}
+.logo input{
+	margin:5px 35%;
+	width:30%;
+}
+.logo small{
+	color:rgb(200,200,200);
+}
+.menu{
+	position:fixed;
+	left:0;
+	top:0;
+	height:100%;
+	width:5%;
+	overflow:hidden;
+	background:rgb(168, 5, 5);
+	transition:width .5s;
+}
+.menu:hover{
+	width:12%;
+}
+.menu li,
+.menu a{
+	color:rgb(250,250,250);
+	list-style:none;
+	width:100%;
+}
