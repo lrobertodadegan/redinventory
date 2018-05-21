@@ -1,28 +1,42 @@
-<div class="menu">
+<div class="menu text-left">
     <nav id="navbar">
         <ul>
-			<li>
-                <a href="/dashboard">Dashboard</a>
-            </li>
-            <li>
-                <a href="/usuarios">Usuários</a>
-            </li>
-            <li>
-                <a href="/Rede">Minha rede</a>
-            </li>
-            <li>
-                <a href="/scanner">Scanner</a>
-            </li>
-            <li>
-                <a href="/config">Configurações</a>
-			</li>
-			<li>
-                <a href="/bug">Relatar Bug</a>
-            </li>
+            <a href="/dashboard">
+                <li>
+                    <i class="fas fa-columns"></i>
+                    Dashboard
+                </li>
+            </a>
+            <a href="/usuarios">
+                <li>
+                    <i class="fas fa-users"></i>
+                    Usuários
+                </li>
+            </a>
+            <a href="/rede">
+                <li>
+                    <i class="fab fa-connectdevelop"></i>
+                    Rede
+                </li>
+            </a>
+            <a href="/scanner">
+                <li>
+                    <i class="fas fa-wrench"></i>
+                    Scanner
+                </li>
+            </a>
+            <a href="/config">
+                <li>
+                    <i class="fas fa-cogs"></i>
+                    Configurações
+                </li>
+            </a>
+            <a href="/bug">
+                <li>
+                    <i class="fas fa-bug"></i>
+                    Bugs
+                </li>
+            </a>
         </ul>
     </nav>
-    <div class="expande">
-        <a href="#" onclick="direitaEsquerda(0);"><i class="fas fa-angle-left"></i></a>
-        <a href="#" onclick="direitaEsquerda(1);"><i class="fas fa-angle-right"></i></a>
-    </div>
 </div>

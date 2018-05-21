@@ -24,7 +24,7 @@
                 <br>
                 <input type="text" class="form-control" name="usuariolin" placeholder="Usuário Administrativo para Linux"/>
                 <input type="text" class="form-control" name="senhalin" placeholder="Senha"/>
-                <button class="btn btn-secondary-outline">Continuar</button>
+                <button class="btn btn-outline-secondary">Continuar</button>
             </div>
         </form>
     </div>

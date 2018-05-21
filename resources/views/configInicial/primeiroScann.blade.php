@@ -16,8 +16,8 @@
             <input type="text" class="form-control" name="rede" placeholder="Endereço da rede para escaneamento. Ex.: 192.168.0.0/24"/>
             <input type="text" class="form-control" name="range" placeholder="Range para escaneamento. Ex.: 1-254"/>
             <input type="text" class="form-control" name="ignore" placeholder="Ignorar estes hosts. Ex.: 192.168.0.25"/>
-            <button type="submit" class="btn btn-secondary-outline">Cadastrar e scanear Agora</button>
-            <button onclick="toHome();" class="btn btn-secondary-outline">Cadastrar e scannear mais tarde</button>
+            <button type="submit" class="btn btn-outline-secondary">Salvar e scanear agora</button>
+            <button onclick="toHome();" class="btn btn-outline-secondary">Só salvar</button>
         </div>
     </form>
  <!-- Modal welcome -->
@@ -32,12 +32,11 @@
                        		<span aria-hidden="true">&times;</span>
                    		</button>
                		</div>
-               		<div class="modal-body">
+               		<div class="modal-body text-justify">
                    		<p>Suas configurações foram salvas com sucesso! Antes de continuar, queremos que saiba que os dados capturados pelo sistema não serão compartilhados com terceiros. Aquilo que vemos aqui, permanecerá aqui, a não ser que euria enviar estes dados para outras pessoas, o que não é da nossa conta.</p>
-                           <p>Fique a vontade! Nossa documentação pode ser encontrada no GitHub <a href="https://github.com/lrobertodadegan/redinventory">aqui</a>.
+                           <p>Fique a vontade! Nossa documentação pode ser encontrada <a href="https://github.com/lrobertodadegan/redinventory">aqui</a>.
                            <p>Bom trabalho!</p>
                            <small>Lucas Roberto Daldegan<br>
-                           Juliano Barreira<br>
                            Leandro Batista<br>
                            Wesley Braga<br>
                            Evandro Soares<br>
