@@ -9,9 +9,13 @@ class RedirectIfAuthenticated
 {
     public function handle($request, Closure $next)
     {
-		if (session()->has('admin'))
-            return $next($request);
-        else
-            return redirect('adm');
+		if (session()->has('admin')){
+            $continue = $next($request);
+        }else{
+            if(!isset($mensagem))
+                $continue = redirect('/')->with(['mensagem' => 'Não conseguimos identificar você. Realize o login para continuar.']);
+        }
+
+        return $continue;
     }
 }

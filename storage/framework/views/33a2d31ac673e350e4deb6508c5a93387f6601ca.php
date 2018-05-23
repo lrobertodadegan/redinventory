@@ -1,7 +1,6 @@
-@extends('templates.master')
-@section('css')
-@endsection
-@section('centro')
+<?php $__env->startSection('css'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('centro'); ?>
     <div class="row telas-maior">
         <div class="col-sm-12 text-center">
             <h2>Minha rede</h2>
@@ -106,33 +105,34 @@
                             <th scope="col">Opções</th>
                         </tr>
                     </thead>
-                    @if(isset($hosts))
-                        @foreach($hosts as $host)
+                    <?php if(isset($hosts)): ?>
+                        <?php $__currentLoopData = $hosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $host): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <th scope="row">{{$host->id}}</th>
-                                <td>{{$host->nome}}</td>
-                                <td>{{$host->ip}}</td>
-                                <td>{{$host->mac}}</td>
-                                <td>{{$host->so}}</td>
-                                <td>{{$host->setor}}</td>
-                                <td>{{$host->usuario}}</td>
-                                <td>{{$host->ram}}</td>
-                                <td>{{$host->hd}}</td>
-                                <td>{{$host->tipo}}</td>
-                                <td>{{$host->estado}}</td>
+                                <th scope="row"><?php echo e($host->id); ?></th>
+                                <td><?php echo e($host->nome); ?></td>
+                                <td><?php echo e($host->ip); ?></td>
+                                <td><?php echo e($host->mac); ?></td>
+                                <td><?php echo e($host->so); ?></td>
+                                <td><?php echo e($host->setor); ?></td>
+                                <td><?php echo e($host->usuario); ?></td>
+                                <td><?php echo e($host->ram); ?></td>
+                                <td><?php echo e($host->hd); ?></td>
+                                <td><?php echo e($host->tipo); ?></td>
+                                <td><?php echo e($host->estado); ?></td>
                                 <td class="text-center">
                                     <form action="/delHost" method="post">
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        <input type="hidden" name="id" value="{{$midia->id}}">
+                                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                                        <input type="hidden" name="id" value="<?php echo e($midia->id); ?>">
                                         <button type="submit"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                    @endif
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
                 </table>
         </div>
     </div>
-@endsection
-@section('js')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -19,7 +19,7 @@ class CreateHostsTable extends Migration
 			$table->increments('id');
 			$table->string('hostname')->nullable();
 			$table->string('ip');
-			$table->string('mac');
+			$table->string('mac')->nullable();
 			$table->string('so')->nullable();
 			$table->string('setor')->nullable();
 			$table->string('usuario')->nullable();

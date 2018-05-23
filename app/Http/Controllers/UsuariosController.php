@@ -46,19 +46,17 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $usuarios = $this->repository->all();
+    public function index(Request $request){
+        $usuario = $this->repository->findWhere(['login' => $request->login, 'senha' => $request->senha]);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $usuarios,
-            ]);
+        if(!$usuario){
+            $resposta = redirect('/')->with(['mensagem' => 'Dados incorretos. Tente novamente.']);
+        }else{
+            session()->put(['usuario' => $usuario]);
+            $resposta = redirect('/dashboard');
         }
 
-        return view('usuarios.index', compact('usuarios'));
+        return $resposta;
     }
 
     /**

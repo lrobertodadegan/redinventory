@@ -1,7 +1,6 @@
-@extends('templates.master')
-@section('css')
-@endsection
-@section('centro')
+<?php $__env->startSection('css'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('centro'); ?>
     <div class="row telas">
         <div class="col-sm-12 text-center">
             <h2>Usuários</h2>
@@ -39,27 +38,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($usuarios))
-                        @foreach($usuarios as $usuario)
+                    <?php if(isset($usuarios)): ?>
+                        <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <th scope="row">{{$usuario->id}}</th>
-                                <td>{{$usuario->nome}}</td>
-                                <td>{{$usuario->login}}</td>
-                                <td>{{$usuario->email}}</td>
+                                <th scope="row"><?php echo e($usuario->id); ?></th>
+                                <td><?php echo e($usuario->nome); ?></td>
+                                <td><?php echo e($usuario->login); ?></td>
+                                <td><?php echo e($usuario->email); ?></td>
                                 <td class="text-center">
                                     <form action="/delUsuario" method="post">
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        <input type="hidden" name="id" value="{{$midia->id}}">
+                                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                                        <input type="hidden" name="id" value="<?php echo e($midia->id); ?>">
                                         <button type="submit"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                    @endif
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
-@endsection
-@section('js')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

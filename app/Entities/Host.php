@@ -14,7 +14,6 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Host extends Model implements Transformable
 {
     use TransformableTrait;
-    use \Timestamps;
     /**
      * The attributes that are mass assignable.
      *
