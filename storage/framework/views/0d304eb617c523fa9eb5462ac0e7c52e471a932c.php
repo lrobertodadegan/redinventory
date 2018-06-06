@@ -27,7 +27,11 @@
                         <small>Tecle ENTER para logar ou clique <a href="#" data-toggle="modal" data-target="#modalSenha">aqui</a> para receber sua senha por e-mail.</small><br>
                         <button type="submit" class="btn btn-outline-secondary" style="width:30%;margin:10px;">Entrar</button>
                     </form>
-                    <div id="aviso"></div>
+                    <div id="aviso">
+                        <?php if(isset($mensagem)): ?>
+                            <small><?php echo e($mensagem); ?></small>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,11 +61,6 @@
     		</div>
 
         <script src="<?php echo e(asset('jquery/jquery.min.js')); ?>"></script>
-        <script>
-            <?php if(isset($mensagem)): ?>
-                $('#aviso').html('<small>' + $mensagem + '</small>');
-            <?php endif; ?>
-        </script>
         <script src="<?php echo e(asset('js/js.js')); ?>"></script>
         <script src="<?php echo e(asset('bootstrap/dist/js/popper.min.js')); ?>"></script>
         <script src="<?php echo e(asset('bootstrap/dist/js/tooltip.min.js')); ?>"></script>

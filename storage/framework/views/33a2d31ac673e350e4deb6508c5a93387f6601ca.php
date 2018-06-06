@@ -4,7 +4,8 @@
     <div class="row telas-maior">
         <div class="col-sm-12 text-center">
             <h2>Minha rede</h2>
-            <form action="/cadRede" method="post">
+            <form action="/cadHost" method="post">
+                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"/>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -46,8 +47,6 @@
                             <input type="text" name="setor" class="form-control" placeholder="Setor"/>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <input type="text" name="usuario" class="form-control" placeholder="Usuário"/>
@@ -68,9 +67,9 @@
                                 <option value="Smartphone">Smartphone</option>
                             </select>
                         </div>
-                        <div class="form-group text-left">
-                            <label for="estado">Estado: </label>
-                            <select name="estado" class="form-control">
+                        <div class="form-inline text-left" style="margin-bottom:12px;">
+                            <label for="estado" class="text-left" style="width:12%;">Estado: </label>
+                            <select name="estado" class="form-control" style="width:88%;">
                                 <option value="Disponível">Disponível</option>
                                 <option value="Em uso">Em uso</option>
                                 <option value="Em manutenção">Em manutenção</option>
@@ -78,6 +77,10 @@
                                 <option value="Furtado">Furtado</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <button class="btn btn-outline-secondary w-100" type="submit">Salvar</button>
                         </div>
@@ -122,8 +125,8 @@
                                 <td class="text-center">
                                     <form action="/delHost" method="post">
                                         <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-                                        <input type="hidden" name="id" value="<?php echo e($midia->id); ?>">
-                                        <button type="submit"><i class="fas fa-trash"></i></button>
+                                        <input type="hidden" name="id" value="<?php echo e($host->id); ?>">
+                                        <button type="submit" style="background:none;border:none;cursor:pointer;"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

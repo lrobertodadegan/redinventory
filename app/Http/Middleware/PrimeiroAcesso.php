@@ -9,9 +9,11 @@ class PrimeiroAcesso
 {
     public function handle($request, Closure $next)
     {
-		if (env('PRIMEIRO_ACESSO') == 0)
-            return $next($request);
+        $config = \App\Http\Controllers\ConfigsController::listar();
+        
+        if(empty($config))
+            return redirect('/');
         else
-            return redirect('/configuracaoInicial');
+            return $next($request);
     }
 }

@@ -37,6 +37,12 @@
                     Bugs
                 </li>
             </a>
+            <a href="/logout">
+                <li>
+                    <i class="fas fa-power-off"></i>
+                    Sair
+                </li>
+            </a>
         </ul>
     </nav>
 </div>

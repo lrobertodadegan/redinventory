@@ -5,20 +5,9 @@
 <div class="row telas">
     <div class="col-sm-12 text-center config">
         <h2>Configurações</h2>
-        <form action="/configura" method="post" class="row">
+        <form action="/atualizarConfig/{{$id}}" method="post" class="row">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="col-sm-6 text-right">
-                <div class="form-group">
-                    <label for="servidor_db" id="lblServidorDB">IP do Servidor de banco de dados:</label>
-                </div>
-                <div class="form-group">
-                    <label for="db" id="lblDB">Base de Dados:</label>
-                </div>
-                <div class="form-group">
-                    <label for="usuariodb" id="lblUsuarioDB">IP do Servidor de banco de dados:</label>
-                </div>
-                <div class="form-group">
-                    <label for="senhadb" id="lblSenhaDB">Senha:</label>
-                </div>
                 <div class="form-group">
                     <label for="rede" id="lblRede">Endereço de rede + máscara:</label>
                 </div>
@@ -37,38 +26,28 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="servidordb"/>
+                    <input type="text" class="form-control" name="rede" value="{{$rede}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="db"/>
+                    <input type="text" class="form-control" name="range" value="{{$range}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="usuariodb"/>
+                    <input type="text" class="form-control" name="ignore" value="{{$ignore}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="senhadb"/>
+                    <input type="text" class="form-control" name="win_user" value="{{$usuario_win}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="rede"/>
+                    <input type="text" class="form-control" name="win_pass" value="{{$senha_lin}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="range"/>
+                    <input type="text" class="form-control" name="lin_user" value="{{$usuario_lin}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="ignore"/>
+                    <input type="text" class="form-control" name="lin_pass" value="{{$senha_lin}}"/>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="usuariowin"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="senhawin"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="usuariolin"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="senhalin"/>
-                </div>
+            </div>
+            <div class="col-sm-12">
                 <div class="form-group">
                     <button class="btn btn-outline-secondary w-100">Salvar</button>
                 </div>

@@ -33,60 +33,102 @@ class HostsController extends Controller
 
 	public function indicadores(){}
 	
-	public function scann($modo = 'basico'){
-		
+	public function scanner($modo = 'basico'){
+        set_time_limit( 600 );
+        ignore_user_abort( true );
+
+        $hostsNovos = '';
+
+        $jaExiste = $this->repository->all();
+
 		if($modo == 'basico'){
-			$rede	= explode('.',env('REDE'));
-			$rede	= $rede[0].".".$rede[1].".".$rede[2].".";
-			$range	= explode('-',env('RANGE'));
-			$nhosts	= $range[1] - $range[0];
-			
-			for($i = 0;$i < $nhosts; $i++){
-				//rodar ping, nslookup ou host
-				$ip			= $range[0] + $i;
-				$ip			= $rede.$ip;
-				
-				//try{
-					//$ping	= shell_exec("ping $ip -n 2");//windows
-					//$ping		= explode("TTL=",$ping);
-				//}catch(\Exception $e){
-					$ping	= shell_exec("ping $ip -c 2");//linux
-					$ping		= explode("ttl=",$ping);
-				//}
-				
-				$ping		= $ping[1][0].$ping[1][1].$ping[1][2];
-				$hostname	= shell_exec("nslookup $ip"); //ou shell_exec("host $ip");
-				//tratar hostname
-				$mac		= shell_exec("arp|grep $ip");
-				//tratar mac
-				
-				if($ping['ttl'] > 64 && $ping['ttl'] <= 128){
-					$so = 'Windows';
-				}else{
-					$so = 'Linux';
-				}
-				
-				//salvar no banco
-				$dados = [
-					'hostname'	=> $hostname,
-					'ip'		=> $ip,
-					'mac'		=> $mac,
-					'so'		=> $so,
-				];
-				
-				$host = $this->repository->create($dados);
-			}			
+			for($i = 3; $i < 4; $i++){
+
+                $alvo = '192.168.40.' . $i;
+
+                $cadastrado = $this->repository->findWhere(['ip' => $alvo]);
+
+                if(count($cadastrado) == 0){
+                    //ping
+                    exec('ping -n 1 -w 1 ' . $alvo . ' | find "TTL"', $saidaPing, $resultadoPing);
+        
+                    if($resultadoPing == 0){
+                        //se o ping der boa
+                        $ip = $alvo;
+                        //tenta resolver o hostname
+                        $hostname = gethostbyaddr($ip);
+
+                        if($hostname == $ip)
+                            $hostname = null;
+                        //pegando o mac (tentando pegar)
+                        exec('arp -a ' . $alvo, $saidaArp, $resultadoArp);
+
+                        if($resultadoArp == 0){
+                            
+                            if(isset($saidaArp[3])){
+                                $saidaArp = explode(" ", $saidaArp[3]);
+
+                                $saidaArp = array_unique($saidaArp);
+
+                                foreach($saidaArp as $arp){
+                                    if(strlen($arp) == 17)
+                                        $mac = $arp;
+                                }
+
+                                $saidaArp = "";
+
+                            }else{
+
+                                $mac = null;
+                            }
+
+                        }
+
+                        //pegando o SO (provavelmente)
+                        $ttl = explode(" ", $saidaPing[0]);
+                        $ttl = explode("=", end($ttl));
+
+                        if($ttl[1] <= 64){
+                            $so = 'Linux';
+                        }else if($ttl[1] > 64 && $ttl[1] <= 128 ){
+                            $so = 'Windows';
+                        }else{
+                            $so = 'Unix';
+                        }
+                        
+                        $dados = [
+                            'hostname' => $hostname,
+                            'ip'       => $ip,
+                            'mac'      => $mac,
+                            'so'       => $so,
+                            'setor'    => null,
+                            'usuario'  => null,
+                            'tipo'     => null,
+                            'estado'   => "Em uso",
+                            'hd'       => null,
+                            'ram'      => null,
+                            'placa_mae'=> null,
+                            'modelo'   => null,
+                            'marca'    => null,
+                        ];
+                        
+                        $hostsNovos .= $this->repository->create($dados);
+                        //$hostsNovos .= json_encode($dados);
+                    }
+                }
+            }
 		}else{
 			//scann avançado
 		}
-		
-	}
+        
+        return $hostsNovos;
+}
 	
     public function store(HostCreateRequest $request)
     {
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            //$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $host = $this->repository->create($request->all());
 
@@ -199,9 +241,9 @@ class HostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->repository->delete($request->id);
 
         if (request()->wantsJson()) {
 

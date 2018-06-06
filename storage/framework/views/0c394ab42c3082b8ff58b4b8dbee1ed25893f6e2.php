@@ -5,21 +5,21 @@
         <div class="col-sm-12 text-center">
             <h2>Usuários</h2>
             <form action="/cadUsuario" method="post">
-                    <div class="form-group">
-                        <input type="text" placeholder="Nome" name="nome" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="E-mail" name="email" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Login" name="login" class="form-control" required/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Senha" name="senha" class="form-control" required/>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-outline-secondary w-100">Salvar</button>
+                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"/>
+                <div class="form-group">
+                    <input type="text" placeholder="Nome" name="nome" class="form-control"/>
                 </div>
+                <div class="form-group">
+                    <input type="text" placeholder="E-mail" name="email" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Login" name="login" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Senha" name="senha" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-secondary w-100">Salvar</button>
                 </div>
             </form>
         </div>
@@ -48,8 +48,8 @@
                                 <td class="text-center">
                                     <form action="/delUsuario" method="post">
                                         <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-                                        <input type="hidden" name="id" value="<?php echo e($midia->id); ?>">
-                                        <button type="submit"><i class="fas fa-trash"></i></button>
+                                        <input type="hidden" name="id" value="<?php echo e($usuario->id); ?>">
+                                        <button type="submit" style="background:none;border:none;cursor:pointer;"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

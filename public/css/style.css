@@ -9,11 +9,11 @@ a:hover{
 	text-decoration:none;
 }
 /* Configuração Inicial */
-configInicialLateral{
+.configInicialLateral{
 	position:fixed;
 	top:50px;
 	left:0;
-	width:200px;
+	width:150px;
 	color:rgb(200,200,200);
 	transform:rotate(-90deg);
 }
@@ -21,15 +21,7 @@ configInicialLateral{
 	margin-top:20px;
 }
 .configInicialForm{
-	margin:50px 0 0 170px;
-}
-.configInicialForm h3,
-.configInicialForm button{
-	margin-top:20px;
-	width:100%;
-}
-.configInicialForm input{
-	margin:5px 0;
+	margin:50px 0 0 200px;
 }
 /* Login */
 .logo{

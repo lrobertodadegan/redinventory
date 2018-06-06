@@ -20,7 +20,7 @@ class CreateUsuariosTable extends Migration
 			$table->string('nome');
 			$table->string('login')->unique();
 			$table->string('email')->nullable();
-			$table->string('senha')->nullable();
+			$table->string('senha');
 
             $table->timestamps();
 		});

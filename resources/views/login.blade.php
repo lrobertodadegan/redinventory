@@ -27,7 +27,11 @@
                         <small>Tecle ENTER para logar ou clique <a href="#" data-toggle="modal" data-target="#modalSenha">aqui</a> para receber sua senha por e-mail.</small><br>
                         <button type="submit" class="btn btn-outline-secondary" style="width:30%;margin:10px;">Entrar</button>
                     </form>
-                    <div id="aviso"></div>
+                    <div id="aviso">
+                        @if(isset($mensagem))
+                            <small>{{$mensagem}}</small>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,11 +61,6 @@
     		</div>
 
         <script src="{{ asset('jquery/jquery.min.js') }}"></script>
-        <script>
-            @if(isset($mensagem))
-                $('#aviso').html('<small>' + $mensagem + '</small>');
-            @endif
-        </script>
         <script src="{{ asset('js/js.js') }}"></script>
         <script src="{{ asset('bootstrap/dist/js/popper.min.js')}}"></script>
         <script src="{{ asset('bootstrap/dist/js/tooltip.min.js')}}"></script>

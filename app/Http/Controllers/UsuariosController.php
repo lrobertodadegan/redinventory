@@ -47,16 +47,34 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        $usuario = $this->repository->findWhere(['login' => $request->login, 'senha' => $request->senha]);
 
-        if(!$usuario){
-            $resposta = redirect('/')->with(['mensagem' => 'Dados incorretos. Tente novamente.']);
+        if($request->login == 'admin' && $request->senha == ''){
+            //primeiro acesso pq a senha é obrigatória no cadastro
+            $resposta = redirect('/configuracaoInicial');
         }else{
-            session()->put(['usuario' => $usuario]);
-            $resposta = redirect('/dashboard');
+            $usuario = $this->repository->findWhere(['login' => $request->login, 'senha' => $request->senha])->first();
+
+            if(!$usuario){
+                $resposta = redirect('/')->with('mensagem','Dados incorretos. Tente novamente.');
+            }else{
+                session()->put(['usuario' => $usuario->nome]);
+                $resposta = redirect('/dashboard');
+            }
         }
 
         return $resposta;
+    }
+
+    public function logout(){
+        session()->flush();
+
+        return redirect('/');
+    }
+
+    public function listar(){
+        $usuarios = $this->repository->all();
+
+        return view('usuarios', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -185,9 +203,10 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleted = $this->repository->delete($id);
+
+        $deleted = $this->repository->delete($request->id);
 
         if (request()->wantsJson()) {
 

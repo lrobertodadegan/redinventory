@@ -8,22 +8,29 @@
 </div>
 <div class="row">
         <form action="/salvarConfig" method="post">
-            <div class="col configInicialLateral">
+            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"/>
+            <div class="col-sm-3 text-center configInicialLateral">
                 <h2>CONFIGURAÇÃO</h2>
             </div>
-            <div class="col configInicialForm">
-                <h3>Banco de Dados</h3>
-                <input type="text" class="form-control" name="servidordb" placeholder="IP do Servidor de Banco de Dados"/>
-                <small>O servidor deve estar ligado e disponível.</small>
-                <input type="text" class="form-control" name="senhadb"/>
-                <small>Informe a senha do usuário com permissões administrativas (root) do seu banco de dados.</small>
-                <h3>Usuários Remotos</h3>
-                <input type="text" class="form-control" name="usuariowin" placeholder="Usuário Administrativo para Windwos"/>
-                <input type="text" class="form-control" name="senhawin" placeholder="Senha"/>
+            <div class="col-sm-9 configInicialForm">
                 <br>
-                <input type="text" class="form-control" name="usuariolin" placeholder="Usuário Administrativo para Linux"/>
-                <input type="text" class="form-control" name="senhalin" placeholder="Senha"/>
-                <button class="btn btn-outline-secondary">Continuar</button>
+                <h3>Usuários Remotos</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="win_user" placeholder="Usuário Administrativo para Windows" value="<?php echo e(isset($configs->win_user) ? $configs->win_user : ''); ?>"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="win_pass" placeholder="Senha" value="<?php echo e(isset($configs->win_pass) ? $configs->win_pass : ''); ?>"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="lin_user" placeholder="Usuário Administrativo para Linux" value="<?php echo e(isset($configs->lin_user) ? $configs->lin_user : ''); ?>"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="lin_pass" placeholder="Senha" value="<?php echo e(isset($configs->lin_pass) ? $configs->lin_pass : ''); ?>"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-secondary w-100">Continuar</button>
+                </div>
             </div>
         </form>
     </div>
